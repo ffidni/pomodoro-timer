@@ -125,8 +125,8 @@ class Timer(MainWindow):
         if self.todolist_ui.isHidden():
             self.todolist_ui.show()
         else:
-            self.todolist_ui.close()
-            self.todolist_ui.show()
+            self.todolist_ui.hide()
+            QTimer.singleShot(10, self.todolist_ui.show)
 
         if not self.todolist_ui.settings:
             self.todolist_ui.first = False
@@ -168,7 +168,6 @@ class Timer(MainWindow):
 
     def todolistCloseEvent(self, event):
         self.todolist = False
-        print(self.todolist_ui.subtasks, self.todolist_ui.objectName(), "AWEOKWOAEK")
         save(self.todolist_ui, self.todolist_ui.subtasks)
 
     def reset_timer(self):
