@@ -1,0 +1,10 @@
+{
+   "Pomodoro": {
+      "work_time": 25,
+      "short_time": 5,
+      "long_time": 15,
+      "auto_start": false,
+      "break_interval": 3
+   },
+   "Todolist": {}
+}
