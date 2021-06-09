@@ -36,12 +36,10 @@ class Settings(QDialog):
 		mlayout.addWidget(self.title, alignment=Qt.AlignHCenter)
 		for index, name in enumerate(('work_time', 'short_time', 'long_time', 'auto_start','break_interval')):
 			value = self.settings.get(name)
-			print(self.settings, value)
 			name = eval(f"self.{name}")
 
 			if name[1].input_type == 'SpinBox':
 				name[1].widget.setButtonSymbols(QAbstractSpinBox.NoButtons)
-				#print(name)
 				name[1].widget.setValue(value)
 			else:
 				name[1].widget.addItem('True')

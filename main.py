@@ -1,6 +1,6 @@
 from timer import *
 from PyQt5.QtCore import QRect, pyqtSlot
-from PyQt5.QtWidgets import QStackedWidget, QMainWindow, QApplication, QDesktopWidget
+from PyQt5.QtWidgets import QStackedWidget, QMainWindow, QApplication, QDesktopWidget, QAction
 
 class Window(QMainWindow):
     """Window(QMainWindow) -> A class to create switchable pages. Credit to eyllanesc."""
@@ -16,6 +16,12 @@ class Window(QMainWindow):
         self.center_the_screen()
 
         self.m_pages = {}
+        self.fullscreen = QAction("&Fullscreen", self)
+
+        self.fullscreen.setShortcut("F11")
+        self.fullscreen.triggered.connect(self.toggle_fullscreen)
+        self.fullscreen.setStatusTip("Change to fullscreen mode")
+        self.addAction(self.fullscreen)
 
         for name in ('Main', 'Work', 'Short', 'Long'):
             if name != 'Main':
@@ -28,6 +34,12 @@ class Window(QMainWindow):
         self.m_pages["Settings"] = Settings(self)
 
         self.goto("Main")
+
+    def toggle_fullscreen(self):
+        if self.isFullScreen():
+            self.showNormal()
+        else:
+            self.showFullScreen()
 
     def center_the_screen(self):
         current_size = self.frameGeometry()
