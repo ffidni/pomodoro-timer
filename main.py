@@ -61,7 +61,6 @@ class Window(QMainWindow):
             widget = self.m_pages[name]
             self.stacked_widget.setCurrentWidget(widget)
 
-
 if __name__ == '__main__':
     app = QApplication([])
     win = Window()
