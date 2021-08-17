@@ -10,7 +10,7 @@ class Window(QMainWindow):
 
         self.setWindowTitle("Pomodoro Timer")
         self.setWindowIcon(QIcon("Assets/IMG/icon.png"))
-        self.setGeometry(QRect(300, 300, 529, 523))
+        self.setGeometry(QRect(0, 0, 529, 523))
         self.stacked_widget = QStackedWidget()
         self.setCentralWidget(self.stacked_widget)
         self.center_the_screen()

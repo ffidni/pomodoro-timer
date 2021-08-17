@@ -27,7 +27,7 @@ class Timer(MainWindow):
     def init_ui(self):
         super().init_ui()
         #Declaring all timer's time in seconds
-        self.timer_times = {"Work":5, "Short":6, "Long":7}
+        self.timer_times = {"Work":25, "Short":5, "Long":10}
         self.auto_start = False
         self.break_interval = 3
         QTimer.singleShot(100, self.update_changes)
@@ -157,7 +157,7 @@ class Timer(MainWindow):
             name = key[:-5].capitalize()
             if name in self.timer_times:
                 self.timer_times[key[:-5].capitalize()] = values[key]*60
-                is_running = self.parent.m_pages[name].thread.is_running
+                is_running = self.parent.m_pages[name].thread.isRunning()
                 is_stopped = self.parent.m_pages[name].is_stopped
                 if not is_running and not is_stopped:
                     self.parent.m_pages[name].timer_count.setText("{:02d}:00".format(values[key]))
@@ -272,12 +272,10 @@ class TimerThread(QThread):
 
     def __init__(self, seconds=0):
         super().__init__()
-        self.is_running = False
         self.seconds = seconds+1
 
     def run(self):
         #Start the countdown
-        self.is_running = True
         while (self.seconds > 0):
             self.seconds -= 1
             self.seconds_signal.emit(self.seconds)
@@ -285,7 +283,6 @@ class TimerThread(QThread):
 
     def stop(self):
         #When the countdown is stopped, send the resume value to the connected signal (Timer().resume_save)
-        self.is_running = False
         self.terminate()
         self.resume.emit(self.seconds)
 

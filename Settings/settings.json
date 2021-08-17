@@ -6,12 +6,5 @@
       "auto_start": false,
       "break_interval": 3
    },
-   "Todolist": {
-      "Tabs": 1,
-      "Current Index": 0,
-      "Subtask 1": {
-         "Title": "d",
-         "Checkboxes": []
-      }
-   }
+   "Todolist": {}
 }

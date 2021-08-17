@@ -290,12 +290,11 @@ class Subtask(QScrollArea):
             
     def fit_content(self, widget):
         text = widget.text()
-        font = QFont("Arial", 0)
+        font = QFont("Arial", 16*self.h_factor)
         fm = QFontMetrics(font)
         width = fm.width(text)
         height = fm.height()
-        main_width = self.width()
-        widget.setFixedSize(width+20, height)
+        widget.setFixedSize(width+2, height)
 
     def settings(self):
         self.settings_dialog = Dialog()
